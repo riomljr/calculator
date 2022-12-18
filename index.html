@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="display">display</div>
+    <div id="mainContainer">
+        <div id="numsContainer">
+            <div class="numButtons">
+                <button value="1" onclick="grabValue('1')">1</button>
+                <button value="2" onclick="grabValue('2')">2</button>
+                <button value="3">3</button>
+            </div>
+            <div class="numButtons">
+                <button value="4">4</button>
+                <button value="5">5</button>
+                <button value="6">6</button>
+            </div>
+            <div class="numButtons">
+                <button value="7">7</button>
+                <button value="8">8</button>
+                <button value="9">9</button>
+            </div>
+            <div class="numButtons">
+                <button onclick="execute(numB,numA, operate)">=</button>
+                <button value="0">0</button>
+                <button>C</button>
+            </div>
+        </div>
+        <div id="operators-Container">
+            <div id="operators">
+                <button onclick="grabValue('+')">+</button>
+                <button onclick="grabValue('-')">-</button>
+                <button>*</button>
+                <button>/</button>
+            </div>
+            
+        </div>
+    </div>
+    
+</body>
+<script>
+
+let operate;
+let numA=0;
+let numB;
+
+function grabValue(value){
+    if(!numA) numA = value;
+    else numA += value;
+    
+  console.log(numA);
+}
+function add(a,b){
+    return a + b;
+};
+function substract(a,b){
+    return a - b;
+};
+function multiply(a,b){
+    return a * b;
+};
+function divide(a,b){
+    return a / b;
+};
+
+function execute (a, b, sign) {
+
+    switch (sign) {
+
+        case add: add(a,b);
+        break;
+
+        case substract: substract(a, b);
+        break;
+
+        case multiply: multiply(a, b);
+        break;
+
+        case divide: divide(a ,b);
+        break;
+    }
+
+
+};
+
+</script>
+</html>

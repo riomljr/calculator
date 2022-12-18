@@ -1,0 +1,12 @@
+#mainContainer {
+    display: flex;
+}
+#operators {
+    display: flex;
+    flex-direction: column;
+}
+
+#numButtons{
+    display: flex;
+    gap: 2px;
+}
