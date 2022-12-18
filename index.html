@@ -8,36 +8,36 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="display">display</div>
+    <div id="display" class="display"></div>
     <div id="mainContainer">
         <div id="numsContainer">
             <div class="numButtons">
                 <button value="1" onclick="grabValue('1')">1</button>
                 <button value="2" onclick="grabValue('2')">2</button>
-                <button value="3">3</button>
+                <button value="3" onclick="grabValue('3')">3</button>
             </div>
             <div class="numButtons">
-                <button value="4">4</button>
-                <button value="5">5</button>
-                <button value="6">6</button>
+                <button value="4" onclick="grabValue('4')">4</button>
+                <button value="5" onclick="grabValue('5')">5</button>
+                <button value="6" onclick="grabValue('6')">6</button>
             </div>
             <div class="numButtons">
-                <button value="7">7</button>
-                <button value="8">8</button>
-                <button value="9">9</button>
+                <button value="7" onclick="grabValue('7')">7</button>
+                <button value="8" onclick="grabValue('8')">8</button>
+                <button value="9" onclick="grabValue('9')">9</button>
             </div>
             <div class="numButtons">
                 <button onclick="execute(numB,numA, operate)">=</button>
-                <button value="0">0</button>
-                <button>C</button>
+                <button value="0" onclick="grabValue('0')">0</button>
+                <button onclick="clearNums()">C</button>
             </div>
         </div>
         <div id="operators-Container">
             <div id="operators">
-                <button onclick="grabValue('+')">+</button>
-                <button onclick="grabValue('-')">-</button>
-                <button>*</button>
-                <button>/</button>
+                <button onclick="operatorGrab(numA, 'add')">+</button>
+                <button onclick="operatorGrab(numA, 'substract')">-</button>
+                <button onclick="operatorGrab(numA, 'multiply')">*</button>
+                <button onclick="operatorGrab(numA, 'divide')">/</button>
             </div>
             
         </div>
@@ -47,42 +47,69 @@
 <script>
 
 let operate;
-let numA=0;
+let numA;
 let numB;
+let numC;
 
+//gets first number value
 function grabValue(value){
     if(!numA) numA = value;
+    //else if (numA > 1) numA = value;
     else numA += value;
     
   console.log(numA);
+  display(numA);
+};
+//adds numbers to display section
+function display(num){
+    const dis = document.querySelector('.display');
+    dis.textContent = num;
 }
-function add(a,b){
-    return a + b;
-};
-function substract(a,b){
-    return a - b;
-};
-function multiply(a,b){
-    return a * b;
-};
-function divide(a,b){
-    return a / b;
-};
 
+//evalutae operator selected
+function operatorGrab(a, op){
+    if(op === operate){
+     //numC = execute(numB, numA, op);
+     //numA = numC;
+     console.log("button alredy pressed")
+    }
+    else {
+    numB = numA;
+    numA = 0;
+    operate = op;
+    }
+    console.log(numA);
+    console.log(numB);
+    console.log(op);
+
+};
+//reset variables
+function clearNums(){
+    numA = 0;
+    numB = 0;
+    display("");
+    operate = 0;
+}
+// Math functions
+function logResults(result){
+    console.log(result);
+    numA = result;
+    display(result);
+    operate = 0;
+}
+
+//compares info provided by buttons/users.
 function execute (a, b, sign) {
-
+ let newA = Number(a);
+ let newB = Number(b);
     switch (sign) {
-
-        case add: add(a,b);
+        case 'add': logResults(newA+newB);
         break;
-
-        case substract: substract(a, b);
+        case 'substract': logResults(newA-newB);
         break;
-
-        case multiply: multiply(a, b);
+        case 'multiply': logResults(newA*newB);
         break;
-
-        case divide: divide(a ,b);
+        case 'divide': logResults(newA/newB);
         break;
     }
 
