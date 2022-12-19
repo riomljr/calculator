@@ -8,45 +8,50 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="display" class="display"></div>
-    <div id="mainContainer">
-        <div id="numsContainer">
-            <div class="numButtons">
-                <button value="1" onclick="grabValue('1')">1</button>
-                <button value="2" onclick="grabValue('2')">2</button>
-                <button value="3" onclick="grabValue('3')">3</button>
+    <div class="containAll">
+        <div id="display" class="display"></div>
+        <div id="mainContainer">
+            <div id="numsContainer">
+                <div class="numButtons">
+                    <button value="1" onclick="grabValue('7')">7</button>
+                    <button value="2" onclick="grabValue('8')">8</button>
+                    <button value="3" onclick="grabValue('9')">9</button>
+                </div>
+                <div class="numButtons">
+                    <button value="4" onclick="grabValue('4')">4</button>
+                    <button value="5" onclick="grabValue('5')">5</button>
+                    <button value="6" onclick="grabValue('6')">6</button>
+                </div>
+                <div class="numButtons">
+                    <button value="7" onclick="grabValue('1')">1</button>
+                    <button value="8" onclick="grabValue('2')">2</button>
+                    <button value="9" onclick="grabValue('3')">3</button>
+                </div>
+                <div class="numButtons">
+                    <button onclick="execute(numB,numA, operate)">=</button>
+                    <button value="0" onclick="grabValue('0')">0</button>
+                    <button>.</button>
+                </div>
+                <div>
+                    <button onclick="clearNums()">Clear</button>
+                </div>
             </div>
-            <div class="numButtons">
-                <button value="4" onclick="grabValue('4')">4</button>
-                <button value="5" onclick="grabValue('5')">5</button>
-                <button value="6" onclick="grabValue('6')">6</button>
+            <div id="operators-Container">
+                <div id="operators">
+                    <button onclick="operatorGrab(numA, 'add')">+</button>
+                    <button onclick="operatorGrab(numA, 'substract')">-</button>
+                    <button onclick="operatorGrab(numA, 'multiply')">*</button>
+                    <button onclick="operatorGrab(numA, 'divide')">/</button>
+                </div>
+                
             </div>
-            <div class="numButtons">
-                <button value="7" onclick="grabValue('7')">7</button>
-                <button value="8" onclick="grabValue('8')">8</button>
-                <button value="9" onclick="grabValue('9')">9</button>
-            </div>
-            <div class="numButtons">
-                <button onclick="execute(numB,numA, operate)">=</button>
-                <button value="0" onclick="grabValue('0')">0</button>
-                <button onclick="clearNums()">C</button>
-            </div>
-        </div>
-        <div id="operators-Container">
-            <div id="operators">
-                <button onclick="operatorGrab(numA, 'add')">+</button>
-                <button onclick="operatorGrab(numA, 'substract')">-</button>
-                <button onclick="operatorGrab(numA, 'multiply')">*</button>
-                <button onclick="operatorGrab(numA, 'divide')">/</button>
-            </div>
-            
         </div>
     </div>
     
 </body>
 <script>
 
-let operate;
+let operate = 0;
 let numA;
 let numB;
 let numC;
@@ -68,10 +73,12 @@ function display(num){
 
 //evalutae operator selected
 function operatorGrab(a, op){
-    if(op === operate){
-     //numC = execute(numB, numA, op);
-     //numA = numC;
+    if(operate != 0){
+     numC = execute(numB, numA, operate);
      console.log("button alredy pressed")
+     numB = numA;
+    numA = 0;
+    operate = op
     }
     else {
     numB = numA;
@@ -92,10 +99,13 @@ function clearNums(){
 }
 // Math functions
 function logResults(result){
-    console.log(result);
     numA = result;
+    console.log(numA);
     display(result);
     operate = 0;
+    numB = 0;
+    return result;
+    
 }
 
 //compares info provided by buttons/users.
@@ -103,13 +113,13 @@ function execute (a, b, sign) {
  let newA = Number(a);
  let newB = Number(b);
     switch (sign) {
-        case 'add': logResults(newA+newB);
+        case 'add': return logResults(newA+newB);
         break;
-        case 'substract': logResults(newA-newB);
+        case 'substract': return logResults(newA-newB);
         break;
-        case 'multiply': logResults(newA*newB);
+        case 'multiply': return logResults(newA*newB);
         break;
-        case 'divide': logResults(newA/newB);
+        case 'divide': return logResults(newA/newB);
         break;
     }
 

@@ -1,3 +1,10 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    border-style: solid;
+}
 #mainContainer {
     display: flex;
 }
@@ -9,4 +16,20 @@
 #numButtons{
     display: flex;
     gap: 2px;
+}
+
+.display{
+    border-style: solid;
+    border-color: black;
+    width: 100px;
+    height: 15px;
+}
+
+.containAll {
+    display: flex;
+    flex-direction: column;
+    border-style: solid;
+    padding: 100px;
+    margin: 100px;
+    
 }
