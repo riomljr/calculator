@@ -104,10 +104,14 @@ function logResults(result){
     display(result);
     operate = 0;
     numB = 0;
-    return result;
-    
+    return result;  
 }
-
+function divi(a, b){
+  if (b == 0) {
+    display("Can't / Zero!");
+  }
+  else logResults(a/b);
+}
 //compares info provided by buttons/users.
 function execute (a, b, sign) {
  let newA = Number(a);
@@ -119,7 +123,7 @@ function execute (a, b, sign) {
         break;
         case 'multiply': return logResults(newA*newB);
         break;
-        case 'divide': return logResults(newA/newB);
+        case 'divide': return divi(newA, newB);
         break;
     }
 
