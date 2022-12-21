@@ -7,6 +7,7 @@ body {
 }
 #mainContainer {
     display: flex;
+    
 }
 #operators {
     display: flex;
@@ -23,6 +24,7 @@ body {
     border-color: black;
     width: 100px;
     height: 15px;
+    text-align: right;
 }
 
 .containAll {

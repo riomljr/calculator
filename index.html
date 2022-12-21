@@ -10,38 +10,42 @@
 <body>
     <div class="containAll">
         <div id="display" class="display"></div>
-        <div id="mainContainer">
+        <div id="mainContainer" class="main">
             <div id="numsContainer">
                 <div class="numButtons">
-                    <button value="1" onclick="grabValue('7')">7</button>
-                    <button value="2" onclick="grabValue('8')">8</button>
-                    <button value="3" onclick="grabValue('9')">9</button>
+                    <button value="C">C</button>
+                    <button value="-">-</button>
+                    <button value="%">%</button>
                 </div>
                 <div class="numButtons">
-                    <button value="4" onclick="grabValue('4')">4</button>
-                    <button value="5" onclick="grabValue('5')">5</button>
-                    <button value="6" onclick="grabValue('6')">6</button>
+                    <button value="7">7</button>
+                    <button value="8">8</button>
+                    <button value="9">9</button>
                 </div>
                 <div class="numButtons">
-                    <button value="7" onclick="grabValue('1')">1</button>
-                    <button value="8" onclick="grabValue('2')">2</button>
-                    <button value="9" onclick="grabValue('3')">3</button>
+                    <button value="4">4</button>
+                    <button value="5">5</button>
+                    <button value="6">6</button>
                 </div>
                 <div class="numButtons">
-                    <button onclick="execute(numB,numA, operate)">=</button>
-                    <button value="0" onclick="grabValue('0')">0</button>
-                    <button>.</button>
+                    <button value="1">1</button>
+                    <button value="2">2</button>
+                    <button value="3">3</button>
                 </div>
-                <div>
-                    <button onclick="clearNums()">Clear</button>
+                <div class="numButtons">
+                    <button value="0">0</button>
+                    <button value=".">.</button>
+                    <button value="b">b</button>
                 </div>
-            </div>
+            </div>    
+            
             <div id="operators-Container">
                 <div id="operators">
-                    <button onclick="operatorGrab(numA, 'add')">+</button>
-                    <button onclick="operatorGrab(numA, 'substract')">-</button>
-                    <button onclick="operatorGrab(numA, 'multiply')">*</button>
-                    <button onclick="operatorGrab(numA, 'divide')">/</button>
+                    <button value="add" >+</button>
+                    <button value="substract">-</button>
+                    <button value="multiply">*</button>
+                    <button value="divide">/</button>
+                    <button >=</button>
                 </div>
                 
             </div>
@@ -52,20 +56,16 @@
 <script>
 
 let operate = 0;
-let numA;
+let numA='';
 let numB;
-let numC;
 
 //gets first number value
 function grabValue(value){
     if(!numA) numA = value;
-    //else if (numA > 1) numA = value;
-    else numA += value;
-    
-  console.log(numA);
-  display(numA);
+    else numA += value; 
+    display(numA);
 };
-//adds numbers to display section
+//adds values to display section
 function display(num){
     const dis = document.querySelector('.display');
     dis.textContent = num;
@@ -74,22 +74,31 @@ function display(num){
 //evalutae operator selected
 function operatorGrab(a, op){
     if(operate != 0){
-     numC = execute(numB, numA, operate);
-     console.log("button alredy pressed")
+     execute(numB, numA, operate);
+     //console.log("button alredy pressed")
      numB = numA;
-    numA = 0;
-    operate = op
+     numA = 0;
+     operate = op
     }
     else {
     numB = numA;
     numA = 0;
     operate = op;
     }
+    /*
     console.log(numA);
     console.log(numB);
     console.log(op);
+    */
 
 };
+//backspace
+function backspace(){
+    numA = numA.toString();
+    let len = numA.length;
+    numA = numA.slice(0,len-1);
+    display(numA);
+}
 //reset variables
 function clearNums(){
     numA = 0;
@@ -97,15 +106,16 @@ function clearNums(){
     display("");
     operate = 0;
 }
-// Math functions
+
 function logResults(result){
     numA = result;
     console.log(numA);
-    display(result);
+    display(numA);
     operate = 0;
     numB = 0;
-    return result;  
+      
 }
+//Math functions
 function divi(a, b){
   if (b == 0) {
     display("Can't / Zero!");
@@ -114,21 +124,62 @@ function divi(a, b){
 }
 //compares info provided by buttons/users.
 function execute (a, b, sign) {
+ let roundA = Number(a);
+ let roundB = Number(b);
+
  let newA = Number(a);
  let newB = Number(b);
+ //console.log(newA);
+ //console.log(newB);
     switch (sign) {
-        case 'add': return logResults(newA+newB);
+        case 'add':logResults(newA+newB);
         break;
-        case 'substract': return logResults(newA-newB);
+        case 'substract':logResults(newA-newB);
         break;
-        case 'multiply': return logResults(newA*newB);
+        case 'multiply': logResults(newA*newB);
         break;
-        case 'divide': return divi(newA, newB);
+        case 'divide': divi(newA, newB);
         break;
     }
-
-
 };
+
+    function eval(e){
+        
+        let num = /\d/;
+        const buttonVal = e.target.value;
+        if(!buttonVal) return;
+        if (buttonVal == 'b') backspace();
+
+        
+
+        //scans for integers
+        if(num.test(buttonVal)) grabValue(buttonVal);
+    
+        else {
+            switch(buttonVal){
+                case 'C': clearNums();
+                break;
+                case '.': if(!(numA.includes('.'))) grabValue('.');
+                break;
+                case '-':
+                break;
+                case '%':
+                break;
+            }
+        }
+    }
+
+    function getOpVal(e){
+        const opVal = e.target.value;
+        if (opVal == "=") execute(numB,numA, operate);
+        operatorGrab(numA, opVal);
+    }
+
+    const container = document.querySelector('#numsContainer');
+    container.addEventListener('click', eval);
+
+    const operaters = document.querySelector('#operators');
+    operaters.addEventListener('click', getOpVal);
 
 </script>
 </html>
