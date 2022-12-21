@@ -85,11 +85,6 @@ function operatorGrab(a, op){
     numA = 0;
     operate = op;
     }
-    /*
-    console.log(numA);
-    console.log(numB);
-    console.log(op);
-    */
 
 };
 //backspace
@@ -124,13 +119,8 @@ function divi(a, b){
 }
 //compares info provided by buttons/users.
 function execute (a, b, sign) {
- let roundA = Number(a);
- let roundB = Number(b);
-
  let newA = Number(a);
  let newB = Number(b);
- //console.log(newA);
- //console.log(newB);
     switch (sign) {
         case 'add':logResults(newA+newB);
         break;
@@ -144,17 +134,12 @@ function execute (a, b, sign) {
 };
 
     function eval(e){
-        
         let num = /\d/;
         const buttonVal = e.target.value;
         if(!buttonVal) return;
         if (buttonVal == 'b') backspace();
-
-        
-
         //scans for integers
         if(num.test(buttonVal)) grabValue(buttonVal);
-    
         else {
             switch(buttonVal){
                 case 'C': clearNums();
