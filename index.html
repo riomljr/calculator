@@ -65,6 +65,17 @@ let operate = 0;
 let numA='';
 let numB;
 
+
+function negative (){
+    numA = 0 -numA;
+    display(numA);
+}
+//modulo fucntion
+function modulo (){
+    numA = numA/100;
+    display(numA);
+}
+
 //gets first number value
 function grabValue(value){
     if(!numA) numA = value;
@@ -157,9 +168,9 @@ function execute (a, b, sign) {
                 break;
                 case '.': if(!period) grabValue('.');
                 break;
-                case '-':
+                case '-' :negative();
                 break;
-                case '%':
+                case '%': modulo();
                 break;
             }
         }
