@@ -35,6 +35,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6000000', e
 .display{
     display: flex;
     justify-content: right;
+    text-align: right;
     font-family: 'Calculator', sans-serif;                                   
     background-color: black;
     color:#7092f0;
