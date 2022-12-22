@@ -16,25 +16,30 @@ body {
 }
 .main {
     display: flex;
-    
-    
+    flex-shrink: 0;
 }
+
 #operators {
     display: flex;
     flex-direction: column;
+    flex-shrink: 0;
 }
 
-
+#numsContainer{
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+   
+}
 
 .display{
     display: flex;
-    flex-grow: 1;
     justify-content: right;
     font-family: 'Calculator', sans-serif;                                   
     background-color: black;
     color:#7092f0;
     height: 40px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     padding: 5px;
     font-size: 36px;
     font-weight: bolder;
@@ -44,9 +49,10 @@ body {
 .containAll {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    min-width: 250px;
+    flex-shrink: 0;
+    margin-top: 100px;
     padding: 45px;
-    margin: 100px;
     border-radius: 50px; 
     background:  linear-gradient(
         100deg, #1e1d1d 0%,
@@ -83,7 +89,4 @@ button {
                 #cf7d52 75%,
                 #844414 100%   
     );
-}
-footer {
-    font-weight: bolder;
 }

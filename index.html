@@ -50,7 +50,7 @@
                     <button id="operator" value="substract">-</button>
                     <button id="operator" value="multiply">*</button>
                     <button id="operator" value="divide">/</button>
-                    <button id="operator" >=</button>
+                    <button id="operator" value="=">=</button>
                 </div>
                 
             </div>
@@ -58,7 +58,7 @@
     </div>
     
 </body>
-<footer>Created by Riomljr for The Odin Project</footer>
+
 <script>
 
 let operate = 0;
@@ -71,6 +71,7 @@ function grabValue(value){
     else numA += value; 
     display(numA);
 };
+
 //adds values to display section
 function display(num){
     const dis = document.querySelector('.display');
@@ -79,13 +80,15 @@ function display(num){
 
 //evalutae operator selected
 function operatorGrab(a, op){
+    
     if(operate != 0){
      execute(numB, numA, operate);
-     //console.log("button alredy pressed")
+     console.log("button alredy pressed")
      numB = numA;
      numA = 0;
      operate = op
     }
+   
     else {
     numB = numA;
     numA = 0;
@@ -114,12 +117,13 @@ function logResults(result){
     display(numA);
     operate = 0;
     numB = 0;
-      
+    
+    
 }
 //Math functions
 function divi(a, b){
   if (b == 0) {
-    display("Can't / Zero!");
+    display("CAN'T / 0");
   }
   else logResults(a/b);
 }
@@ -141,6 +145,7 @@ function execute (a, b, sign) {
 
     function eval(e){
         let num = /\d/;
+        let period = numA.toString().includes('.');
         const buttonVal = e.target.value;
         if(!buttonVal) return;
         if (buttonVal == 'b') backspace();
@@ -150,7 +155,7 @@ function execute (a, b, sign) {
             switch(buttonVal){
                 case 'C': clearNums();
                 break;
-                case '.': if(!(numA.includes('.'))) grabValue('.');
+                case '.': if(!period) grabValue('.');
                 break;
                 case '-':
                 break;
@@ -163,7 +168,7 @@ function execute (a, b, sign) {
     function getOpVal(e){
         const opVal = e.target.value;
         if (opVal == "=") execute(numB,numA, operate);
-        operatorGrab(numA, opVal);
+        else operatorGrab(numA, opVal);
     }
 
     const container = document.querySelector('#numsContainer');
