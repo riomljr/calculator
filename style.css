@@ -7,12 +7,12 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center; 
-    background:  linear-gradient(
-        30deg, #1e1d1d 0%,
-        #cba783 5%,
-        #4d4c4c47 60%,
-        #8a6f46 90%
-    );
+   
+background: -moz-linear-gradient(top,  rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.33) 23%, rgba(0,0,0,0) 47%, rgba(0,0,0,0) 58%, rgba(0,0,0,0) 74%, rgba(0,0,0,0) 98%, rgba(0,0,0,0) 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top,  rgba(0,0,0,0.65) 0%,rgba(0,0,0,0.33) 23%,rgba(0,0,0,0) 47%,rgba(0,0,0,0) 58%,rgba(0,0,0,0) 74%,rgba(0,0,0,0) 98%,rgba(0,0,0,0) 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom,  rgba(0,0,0,0.65) 0%,rgba(0,0,0,0.33) 23%,rgba(0,0,0,0) 47%,rgba(0,0,0,0) 58%,rgba(0,0,0,0) 74%,rgba(0,0,0,0) 98%,rgba(0,0,0,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6000000', endColorstr='#00000000',GradientType=0 ); /* IE6-9 */
+
 }
 .main {
     display: flex;
@@ -49,7 +49,7 @@ body {
 .containAll {
     display: flex;
     flex-direction: column;
-    min-width: 250px;
+    min-width: 200px;
     flex-shrink: 0;
     margin-top: 100px;
     padding: 45px;
